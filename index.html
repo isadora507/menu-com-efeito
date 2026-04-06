@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Vertical - Barra Desliza para o Lado Direito</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            font-family: 'Courier New', monospace;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        .menu ul li {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        /* BARRA VERTICAL AZUL (MARCAÇÃO DE TÓPICO) - FICA À ESQUERDA */
+        .menu ul li::before {
+            content: '|';
+            color: #0088ff;
+            font-size: 56px;
+            font-weight: bold;
+            margin-right: 15px;
+            transition: all 0.4s ease-in-out;
+            display: inline-block;
+        }
+
+        .menu ul li a {
+            text-decoration: none;
+            font-size: 56px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: black;
+            -webkit-text-stroke: 2px white;
+            text-stroke: 2px white;
+            transition: all 0.4s ease-in-out;
+            position: relative;
+            z-index: 2;
+            background-color: black;
+            padding: 5px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* BARRA QUE VAI DESLIZAR POR CIMA E FICAR DO LADO DIREITO */
+        .menu ul li::after {
+            content: '|';
+            color: #0088ff;
+            font-size: 56px;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            opacity: 0;
+            transition: all 0.4s ease-in-out;
+            pointer-events: none;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* ESPAÇO VAZIO QUE SIMULA A DISTÂNCIA DO PONTO FINAL DO LADO DIREITO */
+        .menu ul li .spacer {
+            display: inline-block;
+            width: 0;
+            transition: width 0.4s ease-in-out;
+        }
+
+        /* HOVER */
+        .menu ul li:hover::before {
+            opacity: 0;
+            margin-right: 0;
+        }
+
+        .menu ul li:hover::after {
+            opacity: 1;
+            left: 100%;
+            transform: translateX(calc(-100% + 10px));
+        }
+
+        .menu ul li:hover a {
+            color: #0088ff;
+            -webkit-text-stroke: 0px;
+            text-stroke: 0px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="menu">
+        <ul>
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">Team</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>
